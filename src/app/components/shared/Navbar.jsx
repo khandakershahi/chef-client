@@ -6,9 +6,21 @@ import Link from "next/link";
 const Navbar = () => {
   const links = (
     <>
-      <li><Link href={"/"}>Home</Link> </li>
-      <li><Link href={"/about"}>About</Link> </li>
-      <li><Link href={"/contact"}>Contact</Link> </li>
+      <li>
+        <Link href={"/"} className="uppercase text-sm font-semibold tracking-wide">
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link href={"/about"} className="uppercase text-sm font-semibold tracking-wide">
+          About
+        </Link>
+      </li>
+      <li>
+        <Link href={"/contact"} className="uppercase text-sm font-semibold tracking-wide">
+          Contact
+        </Link>
+      </li>
     </>
   );
   const [isDark, setIsDark] = useState(false);
@@ -39,7 +51,7 @@ const Navbar = () => {
   return (
     <div className="bg-base-100 shadow-sm">
       <Container>
-       <div className="navbar ">
+      <div className="navbar bg-base-100 shadow-sm text-lg font-semibold tracking-wide">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -51,10 +63,10 @@ const Navbar = () => {
         {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-2xl font-bold">daisyUI</a>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu menu-horizontal px-1 text-lg font-semibold">
         {links}
     </ul>
   </div>
