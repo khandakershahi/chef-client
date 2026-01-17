@@ -1,4 +1,5 @@
-import React from "react";
+'use client';
+import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import Link from "next/link";
 
@@ -10,6 +11,31 @@ const Navbar = () => {
       <li><Link href={"/contact"}>Contact</Link> </li>
     </>
   );
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("theme");
+      if (stored) {
+        const dark = stored === "dark";
+        setIsDark(dark);
+        document.documentElement.setAttribute(
+          "data-theme",
+          dark ? "goldenapron-dark" : "goldenapron-light"
+        );
+      } else {
+        const prefersDark =
+          typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setIsDark(prefersDark);
+        document.documentElement.setAttribute(
+          "data-theme",
+          prefersDark ? "goldenapron-dark" : "goldenapron-light"
+        );
+      }
+    } catch (e) {}
+  }, []);
   return (
     <div className="bg-base-100 shadow-sm">
       <Container>
@@ -32,9 +58,27 @@ const Navbar = () => {
         {links}
     </ul>
   </div>
-  <div className="navbar-end"><label className="swap swap-rotate">
+  <div className="navbar-end">{
+    /* Theme toggle: controlled checkbox with handler */
+  }
+  <label className="swap swap-rotate">
   {/* this hidden checkbox controls the state */}
-  <input type="checkbox" className="theme-controller" value="dark" />
+  <input
+    type="checkbox"
+    className="theme-controller"
+    value="dark"
+    checked={isDark}
+    onChange={() => {
+      const next = !isDark;
+      setIsDark(next);
+      const themeName = next ? "goldenapron-dark" : "goldenapron-light";
+      try {
+        document.documentElement.setAttribute("data-theme", themeName);
+        localStorage.setItem("theme", next ? "dark" : "light");
+      } catch (e) {}
+    }}
+    aria-label="Toggle theme"
+  />
 
   {/* sun icon */}
   <svg
