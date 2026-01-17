@@ -101,7 +101,7 @@ const Navbar = () => {
     <a
       className={
         isDark
-          ? "btn btn-neutral text-base-content"
+          ? "btn bg-white text-black"
           : "btn bg-black text-white"
       }
     >
