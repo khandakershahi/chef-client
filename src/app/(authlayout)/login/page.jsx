@@ -40,13 +40,13 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit} className="p-8 space-y-4">
           {/* Heading */}
           <div className="flex flex-col gap-2 mb-6">
-            <h1 className="text-base-content dark:text-white text-3xl font-black leading-tight">Staff Portal</h1>
-            <p className="text-base-content/60 dark:text-gray-400 text-base italic">Welcome back to the kitchen, Chef.</p>
+            <h1 className="text-gray-900 dark:text-gray-900 text-3xl font-black leading-tight">Staff Portal</h1>
+            <p className="text-gray-600 dark:text-gray-700 text-base italic">Welcome back to the kitchen, Chef.</p>
           </div>
 
           {/* Email Field */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-base-content dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+            <label className="text-gray-900 dark:text-gray-900 text-sm font-bold uppercase tracking-wide pb-1">
               Email Address
             </label>
             <input
@@ -60,7 +60,7 @@ const LoginPage = () => {
 
           {/* Password Field */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-base-content dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+            <label className="text-gray-900 dark:text-gray-900 text-sm font-bold uppercase tracking-wide pb-1">
               Password
             </label>
             <div className="flex w-full items-stretch">
@@ -90,7 +90,7 @@ const LoginPage = () => {
                 onChange={(e) => setRememberMe(e.target.checked)}
                 className="w-4 h-4 rounded border-2 border-base-300 dark:border-base-600 accent-primary cursor-pointer"
               />
-              <span className="text-base-content dark:text-gray-300 text-sm font-medium">Remember me</span>
+              <span className="text-gray-800 dark:text-gray-800 text-sm font-medium">Remember me</span>
             </label>
             <Link href="/register" className="text-primary dark:text-secondary text-sm font-bold hover:underline">
               Create Account
@@ -109,7 +109,7 @@ const LoginPage = () => {
 
           {/* Back Button */}
           <div className="flex justify-center pb-4 pt-2">
-            <Link href="/" className="flex items-center gap-2 text-base-content/60 dark:text-gray-400 text-sm font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+            <Link href="/" className="flex items-center gap-2 text-gray-700 dark:text-gray-700 text-sm font-medium hover:text-primary dark:hover:text-secondary transition-colors">
               <span>←</span>
               <span>Back to Website</span>
             </Link>
@@ -118,7 +118,7 @@ const LoginPage = () => {
 
         {/* Footer */}
         <div className="bg-primary/5 dark:bg-white/5 py-4 px-8 text-center">
-          <p className="text-[10px] text-base-content/60 dark:text-gray-500 uppercase tracking-widest font-medium">
+          <p className="text-[10px] text-gray-700 dark:text-gray-700 uppercase tracking-widest font-medium">
             Secured by End-to-End Encryption • v1.0.0
           </p>
         </div>

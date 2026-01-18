@@ -53,13 +53,13 @@ const RegisterPage = () => {
           <form onSubmit={handleSubmit} className="p-8 space-y-4">
             {/* Heading */}
             <div className="flex flex-col gap-2 mb-6">
-              <h1 className="text-base-content dark:text-white text-3xl font-black leading-tight">Create Account</h1>
-              <p className="text-base-content/60 dark:text-gray-400 text-base">Join our culinary community, Chef.</p>
+              <h1 className="text-gray-900 dark:text-gray-900 text-3xl font-black leading-tight">Create Account</h1>
+              <p className="text-gray-600 dark:text-gray-700 text-base">Join our culinary community, Chef.</p>
             </div>
 
             {/* Full Name Field */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-base-content dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+              <label className="text-gray-900 dark:text-gray-900 text-sm font-bold uppercase tracking-wide pb-1">
                 Full Name
               </label>
               <input
@@ -74,7 +74,7 @@ const RegisterPage = () => {
 
             {/* Email Field */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-base-content dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+              <label className="text-gray-900 dark:text-gray-900 text-sm font-bold uppercase tracking-wide pb-1">
                 Email Address
               </label>
               <input
@@ -89,7 +89,7 @@ const RegisterPage = () => {
 
             {/* Password Field */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-base-content dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+              <label className="text-gray-900 dark:text-gray-900 text-sm font-bold uppercase tracking-wide pb-1">
                 Password
               </label>
               <div className="flex w-full items-stretch">
@@ -113,7 +113,7 @@ const RegisterPage = () => {
 
             {/* Confirm Password Field */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-base-content dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+              <label className="text-gray-900 dark:text-gray-900 text-sm font-bold uppercase tracking-wide pb-1">
                 Confirm Password
               </label>
               <div className="flex w-full items-stretch">
@@ -145,7 +145,7 @@ const RegisterPage = () => {
                   onChange={handleChange}
                   className="w-4 h-4 mt-1 rounded border-2 border-base-300 dark:border-base-600 accent-primary cursor-pointer"
                 />
-                <span className="text-base-content dark:text-gray-300 text-sm">
+                <span className="text-gray-800 dark:text-gray-800 text-sm">
                   I agree to the Terms of Service and Privacy Policy
                 </span>
               </label>
@@ -163,7 +163,7 @@ const RegisterPage = () => {
 
             {/* Login Link */}
             <div className="flex justify-center text-center gap-2 pb-4 pt-2">
-              <span className="text-base-content/60 dark:text-gray-400 text-sm">Already have an account?</span>
+              <span className="text-gray-700 dark:text-gray-700 text-sm">Already have an account?</span>
               <Link href="/login" className="text-primary dark:text-secondary text-sm font-bold hover:underline">
                 Sign In
               </Link>
@@ -172,7 +172,7 @@ const RegisterPage = () => {
 
           {/* Footer */}
           <div className="bg-primary/5 dark:bg-white/5 py-4 px-8 text-center">
-            <p className="text-[10px] text-base-content/60 dark:text-gray-500 uppercase tracking-widest font-medium">
+            <p className="text-[10px] text-gray-700 dark:text-gray-700 uppercase tracking-widest font-medium">
               Secured by End-to-End Encryption • v1.0.0
             </p>
           </div>
