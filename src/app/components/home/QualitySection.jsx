@@ -2,22 +2,22 @@ import React from 'react';
 
 const QualitySection = () => {
   return (
-    <section className="py-12 bg-base-content text-primary-content overflow-hidden">
+    <section className="py-12 bg-slate-900 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <h2 className="text-4xl font-bold">Uncompromising Quality</h2>
-          <p className="text-primary-content/60 text-lg leading-relaxed">
+          <p className="text-white/60 text-lg leading-relaxed">
             We believe that great food starts with the rawest, purest elements. Our kitchen is a laboratory of flavors, where fresh herbs, heirloom vegetables, and premium proteins take center stage.
           </p>
           <div className="flex gap-4">
             <div className="flex flex-col">
               <span className="text-3xl font-black text-secondary">100%</span>
-              <span className="text-xs uppercase tracking-widest text-primary-content/40">Organic</span>
+              <span className="text-xs uppercase tracking-widest text-white/40">Organic</span>
             </div>
-            <div className="w-px h-12 bg-primary-content/20"></div>
+            <div className="w-px h-12 bg-white/20"></div>
             <div className="flex flex-col">
               <span className="text-3xl font-black text-secondary">Daily</span>
-              <span className="text-xs uppercase tracking-widest text-primary-content/40">Harvest</span>
+              <span className="text-xs uppercase tracking-widest text-white/40">Harvest</span>
             </div>
           </div>
         </div>
