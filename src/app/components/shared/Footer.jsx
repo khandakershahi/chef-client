@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaUtensils } from 'react-icons/fa'
 import Container from '../Container'
+import Link from 'next/link'
 
 const Footer = () => {
     return (
@@ -9,9 +10,9 @@ const Footer = () => {
             <Container>
                 <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
                     <aside>
-                        <div className="w-12 h-12 rounded-lg bg-primary text-primary-content flex items-center justify-center">
+                        <Link href="/" className="w-12 h-12 rounded-lg bg-primary text-primary-content flex items-center justify-center hover:opacity-90 transition-opacity">
                             <FaUtensils size={22} />
-                        </div>
+                        </Link>
                         <p>
                             The Golden Apron
                             <br />
