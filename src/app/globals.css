@@ -17,11 +17,11 @@
   --color-base-content: #2D2D2D; /* charcoal text */
 
   /* Brand */
-  --color-primary: #D4AF37;        /* metallic gold */
-  --color-primary-content: #2D2D2D;
+  --color-primary: #682c31;        /* burgundy from demo */
+  --color-primary-content: #FDFCF8; /* light text on burgundy */
 
-  --color-secondary: #2D2D2D;      /* charcoal */
-  --color-secondary-content: #FFFFFF;
+  --color-secondary: #D9C3A0;      /* accent gold from demo */
+  --color-secondary-content: #161313; /* charcoal text on gold */
 
   --color-accent: #D4AF37;         /* gold accent */
   --color-accent-content: #2D2D2D;
@@ -69,11 +69,11 @@
   --color-base-content: #F5F5F5;
 
   /* Brand */
-  --color-primary: #E5C158;        /* luminous gold */
-  --color-primary-content: #1A1A1A;
+  --color-primary: #682c31;        /* burgundy keeps brand in dark */
+  --color-primary-content: #F5F5F5; /* light content on burgundy */
 
-  --color-secondary: #94A3B8;      /* muted slate */
-  --color-secondary-content: #0F172A;
+  --color-secondary: #D9C3A0;      /* accent gold */
+  --color-secondary-content: #171717; /* dark content on gold */
 
   --color-accent: #E5C158;
   --color-accent-content: #1A1A1A;
