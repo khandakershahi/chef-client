@@ -92,8 +92,8 @@ const LoginPage = () => {
               />
               <span className="text-base-content dark:text-gray-300 text-sm font-medium">Remember me</span>
             </label>
-            <Link href="#" className="text-primary dark:text-secondary text-sm font-bold hover:underline">
-              Forgot Password?
+            <Link href="/register" className="text-primary dark:text-secondary text-sm font-bold hover:underline">
+              Create Account
             </Link>
           </div>
 
