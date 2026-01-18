@@ -1,33 +1,36 @@
 import React from 'react';
 import Container from '../Container';
 
-const FeaturedDishes = () => {
-  const dishes = [
+const FeaturedDishes = ({ dishes = [] }) => {
+  // Default dishes if no data from DB
+  const defaultDishes = [
     {
       title: 'Saffron Braised Lamb',
-      description: 'Slow-cooked perfection with organic herbs',
-      image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=600',
+      description: 'Slow-cooked lamb shank with saffron-infused broth, served with heirloom vegetables.',
+      image: 'https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=800',
       offset: false
     },
     {
-      title: 'Winter Root Risotto',
-      description: 'Creamy arborio with seasonal root vegetables',
-      image: 'https://images.unsplash.com/photo-1476124369491-c90d1ef8c8c5?w=600',
+      title: 'Truffle Risotto',
+      description: 'Creamy Arborio rice finished with black truffle shavings and aged Parmesan.',
+      image: 'https://images.unsplash.com/photo-1476124369491-c4fcf4e8b934?w=800',
       offset: true
     },
     {
-      title: 'Seared Scallops',
-      description: 'Wild-caught Atlantic scallops',
-      image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=600',
+      title: 'Herb-Crusted Salmon',
+      description: 'Pan-seared salmon with a delicate herb crust, accompanied by seasonal greens.',
+      image: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=800',
       offset: false
     },
     {
-      title: 'Truffle Tagliatelle',
-      description: 'Hand-rolled pasta with black winter truffles',
-      image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600',
+      title: 'Chocolate Soufflé',
+      description: 'Decadent dark chocolate soufflé with a molten center, served with vanilla bean ice cream.',
+      image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800',
       offset: true
     }
   ];
+  
+  const displayDishes = dishes.length > 0 ? dishes : defaultDishes;
 
   return (
     <section className="bg-base-100 py-24">
@@ -44,7 +47,7 @@ const FeaturedDishes = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {dishes.map((dish, index) => (
+          {displayDishes.map((dish, index) => (
             <div
               key={index}
               className={`group cursor-pointer ${dish.offset ? 'lg:translate-y-8' : ''}`}
