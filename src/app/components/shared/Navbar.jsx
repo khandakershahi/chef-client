@@ -2,27 +2,15 @@
 import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import Link from "next/link";
+import link from "daisyui/components/link";
 
 const Navbar = () => {
-  const links = (
-    <>
-      <li>
-        <Link href={"/"} className="uppercase text-sm font-semibold tracking-wide">
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link href={"/about"} className="uppercase text-sm font-semibold tracking-wide">
-          About
-        </Link>
-      </li>
-      <li>
-        <Link href={"/contact"} className="uppercase text-sm font-semibold tracking-wide">
-          Contact
-        </Link>
-      </li>
-    </>
-  );
+
+  const links = <>
+    <li><Link href="/">Home</Link></li>
+    <li><Link href="/about">About</Link></li>
+    <li><Link href="/contact">Contact</Link></li>
+  </>
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -49,9 +37,9 @@ const Navbar = () => {
     } catch (e) {}
   }, []);
   return (
-    <div className="bg-base-100 shadow-sm">
+    <header className="bg-base-100 shadow-sm">
       <Container>
-      <div className="navbar bg-base-100 shadow-sm text-lg font-semibold tracking-wide">
+   <div className="navbar ">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,37 +48,20 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        {links}
+       {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-2xl font-bold">daisyUI</a>
+    <a className="btn btn-ghost text-xl">daisyUI</a>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1 text-lg font-semibold">
-        {links}
+    <ul className="menu menu-horizontal px-1">
+       {links}
     </ul>
   </div>
-  <div className="navbar-end">{
-    /* Theme toggle: controlled checkbox with handler */
-  }
-  <label className="swap swap-rotate">
+  <div className="navbar-end">
+    <label className="swap swap-rotate">
   {/* this hidden checkbox controls the state */}
-  <input
-    type="checkbox"
-    className="theme-controller"
-    value="dark"
-    checked={isDark}
-    onChange={() => {
-      const next = !isDark;
-      setIsDark(next);
-      const themeName = next ? "goldenapron-dark" : "goldenapron-light";
-      try {
-        document.documentElement.setAttribute("data-theme", themeName);
-        localStorage.setItem("theme", next ? "dark" : "light");
-      } catch (e) {}
-    }}
-    aria-label="Toggle theme"
-  />
+  <input type="checkbox" className="theme-controller" value="dark" />
 
   {/* sun icon */}
   <svg
@@ -110,19 +81,11 @@ const Navbar = () => {
       d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
   </svg>
 </label>
-    <a
-      className={
-        isDark
-          ? "btn bg-white text-black"
-          : "btn bg-black text-white"
-      }
-    >
-      Login
-    </a>
+    <a className="btn">Button</a>
   </div>
 </div>
-      </Container>
-    </div>
+</Container>
+</header>
   );
 };
 
