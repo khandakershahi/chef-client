@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Container from '../../components/Container';
 
 const DishDetailsPage = () => {
   const dishImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDr7fmo9GsCZHyVlFIr75MUO7NAqfhCLHE-S-ujf60hjKktXnYDEvI7Sb5UyGN9ZCGUrgrg3Wni70arf5kxttzxIw7g0FVX20bs3A3eikfkBvLnmrhcNTMA8SbYlGpMZ7NsZA5Kf_20tf-mpO4Uk-DoP2sIAEaXOWx1eVVB1_O33Rx44o9505POmDT20AsgSF_prXWEfuizbC_-9qAnOLi2d5ceMPpQSBTxZawkzAP9FBAzWBX-hCicu3fEpa-uw0WTANAdofWqxJY';
@@ -41,7 +42,8 @@ const DishDetailsPage = () => {
 
       {/* Right Side: Content */}
       <div className="w-full lg:w-1/2 bg-base-100 overflow-y-auto">
-        <div className="max-w-[640px] px-6 lg:px-12 py-12 lg:py-20 flex flex-col gap-10">
+        <Container>
+          <div className="py-12 lg:py-20 flex flex-col gap-10">
           {/* Back Button */}
           <Link href="/menu" className="flex items-center gap-2 group transition-colors hover:text-primary w-fit">
             <span>←</span>
@@ -124,7 +126,8 @@ const DishDetailsPage = () => {
           <p className="text-center text-xs text-base-content/40 italic">
             * Preparation time: Approx. {dish.prepTime}. All meats are cooked to medium unless specified.
           </p>
-        </div>
+          </div>
+        </Container>
       </div>
     </main>
   );
