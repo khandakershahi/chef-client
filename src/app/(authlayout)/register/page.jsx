@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const RegisterPage = () => {
   const backgroundImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDtu2bQRsfYLVNROFUBQBXRy_LTPH9jJNqw3Fb4dEGiBKlRfQvxaj5gDKXesqy2uFMOAutmGplxdX_xufgi_3w7JvYVGACBvBn0TJewLdkmWEYAsDSGQRWdehEdpNXpLy3RkwOUSGKQeEQKpDAY0JVOhu8UMAwxjUKLm8Pj2jLAD6aETX59FPrwSVlG6bM0ZNw_AFHJFHmb9dovDBjTIg055h5VOGfU489v6tQrYfnIuOBPJkzbCWpKNCkc-6IYy21BpwokmhY8V3k';
@@ -104,9 +105,9 @@ const RegisterPage = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-base-content/60 hover:text-base-content transition-colors flex items-center justify-center"
+                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center"
                 >
-                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                  {showPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
                 </button>
               </div>
             </div>
@@ -128,9 +129,9 @@ const RegisterPage = () => {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-base-content/60 hover:text-base-content transition-colors flex items-center justify-center"
+                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center"
                 >
-                  {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                  {showConfirmPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
                 </button>
               </div>
             </div>
@@ -155,7 +156,7 @@ const RegisterPage = () => {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full h-14 rounded-lg bg-secondary hover:bg-secondary/90 text-base-content font-black uppercase tracking-widest transition-colors shadow-md"
+                className="w-full h-14 rounded-lg bg-secondary hover:bg-secondary/90 text-gray-900 font-black uppercase tracking-widest transition-colors shadow-md"
               >
                 Create Account
               </button>
