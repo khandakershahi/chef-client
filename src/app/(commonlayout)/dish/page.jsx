@@ -27,23 +27,24 @@ const DishDetailsPage = () => {
   };
 
   return (
-    <main className="flex flex-col lg:flex-row min-h-screen pt-20 bg-base-100">
-      {/* Left Side: Hero Image */}
-      <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen sticky top-20 bg-base-100">
-        <div className="w-full h-full p-4 lg:p-12">
-          <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl">
-            <div
-              className="w-full h-full bg-center bg-cover"
-              style={{ backgroundImage: `url('${dishImageUrl}')` }}
-            />
+    <main className="pt-20 bg-base-100">
+      <Container>
+        <div className="flex flex-col lg:flex-row min-h-screen">
+          {/* Left Side: Hero Image */}
+          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen sticky top-20 bg-base-100">
+            <div className="w-full h-full p-4 lg:p-12">
+              <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl">
+                <div
+                  className="w-full h-full bg-center bg-cover"
+                  style={{ backgroundImage: `url('${dishImageUrl}')` }}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Right Side: Content */}
-      <div className="w-full lg:w-1/2 bg-base-100 overflow-y-auto">
-        <Container>
-          <div className="py-12 lg:py-20 flex flex-col gap-10">
+          {/* Right Side: Content */}
+          <div className="w-full lg:w-1/2 bg-base-100 overflow-y-auto">
+            <div className="py-12 lg:py-20 flex flex-col gap-10">
           {/* Back Button */}
           <Link href="/menu" className="flex items-center gap-2 group transition-colors hover:text-primary w-fit">
             <span>←</span>
@@ -126,9 +127,10 @@ const DishDetailsPage = () => {
           <p className="text-center text-xs text-base-content/40 italic">
             * Preparation time: Approx. {dish.prepTime}. All meats are cooked to medium unless specified.
           </p>
+            </div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </main>
   );
 };
