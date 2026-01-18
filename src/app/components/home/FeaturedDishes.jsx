@@ -6,26 +6,26 @@ const FeaturedDishes = ({ dishes = [] }) => {
   const defaultDishes = [
     {
       title: 'Saffron Braised Lamb',
-      description: 'Slow-cooked lamb shank with saffron-infused broth, served with heirloom vegetables.',
-      image: 'https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=800',
+      description: 'Slow-cooked perfection with organic herbs',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbuloFcItBYL7D0LOH-4nqiAQyApqux7C3w0bY-dCZhnh0j4xrz_nUef73_Cv-SYD4C6tbK4nZsGsiM6mEdV_16vA4ccl90iB1uKy-xIBuIVeDmkgQiWoEJRb6ojExQ_-o7P3q8pCtcekoRo352K1GdfSN5Tjw5-2kNMpzWe0fY0jS7rtpM4Qb1BaNB3c7fbdAtcwRZmnMBIVVlmq2ci8N2p9SLCeIBZ1w8c1FngKqOOqSV0bb3SFwCaBpHRAZ09juT7954bim_Og',
       offset: false
     },
     {
-      title: 'Truffle Risotto',
-      description: 'Creamy Arborio rice finished with black truffle shavings and aged Parmesan.',
-      image: 'https://images.unsplash.com/photo-1476124369491-c4fcf4e8b934?w=800',
+      title: 'Winter Root Risotto',
+      description: 'Creamy arborio with seasonal root vegetables',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBtDIuXb5vWXgnHdFvKnde691UmsYlN570pxfIthx9zExDVYcSw49jq-FnyqMMe2ilfztf9swpHAG2YeTL-CEpJ5RWLi_WxXZdZ1cj3dnzRAkEqpmFgksNmfPWHnywbvWooEtCAvYNuvzu7vB380_3_O1kkJwN_FuGnYpu8dw_lNkX8Cm5EXzXbcIEsm2wDj-bGM5NXCtFHKSx5yTma1BTnoWCByaNxB7IV2P7IVZ7zFdtHRLjRudCjOBErbswDEOfFoBqeWLkgLKA',
       offset: true
     },
     {
-      title: 'Herb-Crusted Salmon',
-      description: 'Pan-seared salmon with a delicate herb crust, accompanied by seasonal greens.',
-      image: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=800',
+      title: 'Seared Scallops',
+      description: 'Wild-caught Atlantic scallops',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvbdQKvm2pD6u869-dUUSHUGGoNvFLPp6ZAi6fgB0koNWZPWph2Q2JlnDULRWg9c-rIhrIlGDYk_GJs_8luMpqXRuKXLHxp50LHSFrHMEthQXFKa3VFL7kMtxRLH21pU3nV5tvNgKEVuVqnTN2ZbocUZSDzx1DXIqlmjNRdN7VKbUlitN93vY-NEwwu3KFXce8ipXpL5eTijst_TJWLRwNqc8N8mgzqTlhxCmt3p1kLSwlMQ4uzdiz3l94LbkWyF4cG7gJkh3goJY',
       offset: false
     },
     {
-      title: 'Chocolate Soufflé',
-      description: 'Decadent dark chocolate soufflé with a molten center, served with vanilla bean ice cream.',
-      image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800',
+      title: 'Truffle Tagliatelle',
+      description: 'Hand-rolled pasta with black winter truffles',
+      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCx6SgvQjZsZtn8ZCJ4io9cmI7pop4iYym7W6i8Qq77gSdP5v2JDYkZHnLC9Di7hBuTfkLL-KxyxM3fok7jsURoo5BfBUjSdCac5frFPf5_Gm419MSnRk_amT_o1JYEGe8NsPiapKddnE8i8QmBnUaQvdhVtNMs0VJDVrQ8DcSwyqv9hVhJW8wdWnRlXBUd_be_eKglZ4lEQB-ZZGlKdfNT7g_sV47d2HD0vDU_bdk4RCHWoWP7RXAZ6l6kA5eF-0SmibXhfgxpLRc',
       offset: true
     }
   ];

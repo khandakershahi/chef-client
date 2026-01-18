@@ -10,7 +10,7 @@ const StorySection = () => {
             <div className="absolute -top-6 -left-6 text-primary/10 text-[200px] font-black leading-none select-none">"</div>
             <div 
               className="aspect-square bg-center bg-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000" 
-              style={{backgroundImage: "url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800')"}}
+              style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUuOXM0hpvQnW74_U1U9cDg5PDzqzadCOahHZbUwKm543LEzWh1nBHoBiFHs1KglFAEEcpye0PQUV51TrwPjkqX4MG1DeiWFR7gLXfnGb8oeaQIX257IZ6rOkSt-hkn9LPOj13dTthB7cv2UAVjYtUhmtSBx5zuEBozGCAOIGvjDLPYMCvE2othkv3sHGIt2G_bQD170VecYBtyWKjKbw0IPAMGkMe1U519P4U4QhGqdR9J7CXoWvVl8LohZQvr2k8sD8PAp-OdkI')"}}
             ></div>
             <div className="absolute bottom-8 right-8 bg-base-100 p-6 rounded-xl shadow-xl border-l-4 border-primary">
               <p className="font-bold text-xl text-base-content">Julian Vance</p>

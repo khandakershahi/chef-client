@@ -34,7 +34,7 @@ const HeroSection = () => {
               <div
                 className="aspect-[4/3] w-full bg-center bg-cover rounded-xl shadow-2xl"
                 style={{
-                  backgroundImage: "url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800')"
+                  backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzPYDaKyezHD5lkl3kSTF5uwz-znTsJUaxBqNT5eyLIRPY2JyGSlh6WEJMGHEFpPD-l197vzJLIy3CtwoQSoNpYNE11bkDe_ozFUiaGq29_Q6YCggZRLzILpZz72I_w7r5_SmlvsQydzJLl3EhvzNW3_m8HnnY4B3ye60EZo1k7Q9e5xUCVsNsO3rfV6b65_CT0g4tq0lOu0cuVm_HHHtgR5oezFpE2N_DmmCQ3YbqOKWplUKJzAe5eGQ4eB0-3OLM4j1QIDVuQ2Y')"
                 }}
               ></div>
             </div>

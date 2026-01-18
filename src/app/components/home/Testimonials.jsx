@@ -12,7 +12,7 @@ const Testimonials = ({ testimonials = [] }) => {
       text: "The saffron braised lamb was a revelation. I haven't experienced such a perfect balance of traditional flavors and avant-garde presentation anywhere else in the city.",
       name: "Eleanor Rigby",
       position: "Food Critic, The Daily Gourmet",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCfoCIt8CQZu07R_LMLN2mQglFxhBMrAVQP42PDKZ0Um9qjDbQXINT1252VzUvuPMrxhCFVDK1pdh5cKIgGP4AVQYi8QqtTujf2-nHK9ih8512vsxAD1daJ8uVfQ0lzK5mVuOPDvTbUs0mhtWbWKO4xRfXwakgAt-Ou6WPXPaLOnvEJ10V8WUVLO6DjL4i5UHjB-me_8wM7LVcTMsdJztLdYUk2hLZLg3YEV68C_SKOPu4m0MsMyOU0lE0Xci3a3xtgZbYG74QdI7w",
       rating: 5
     },
     {

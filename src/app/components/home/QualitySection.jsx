@@ -24,11 +24,11 @@ const QualitySection = () => {
         <div className="grid grid-cols-2 gap-4 translate-x-12">
           <div 
             className="aspect-[3/4] rounded-xl bg-center bg-cover" 
-            style={{backgroundImage: "url('https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600')"}}
+            style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCOlHsOI2D3RDhFnKhUC77duSL_w8Tia-27IhvymogfprUXbHnCU81cyawqk9F74W35f-2FeI2XjYslT5eLXy1Lte09BqkM0Eaq4D8qSDt_zHsmy816dR8qyx9B8pS0IoDsr_2xbtb8l9hT69Vr8ClBq1Mhmhv8D6-Kf8nYE_4UGJUf0rLCwg9IzDfYupT3RRfkZm2zZqMZ-Wbe1C4k6yjMcEVG6GJYpu9nDrlmlMe_DugrxDRQVUcrB6OYrUG1JmwppJJi5hlzrM')"}}
           ></div>
           <div 
             className="aspect-[3/4] rounded-xl bg-center bg-cover mt-12" 
-            style={{backgroundImage: "url('https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=600')"}}
+            style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQH4FrewaAJZIqPZXXr5VQyYBsLiG4QrwZ72EKDnmXpRF3XWq-HnpPuLgEeCNHGe8nvPie8plqI_DJDaLRJkqlUiBdnPLYJYSK7zi28w8Eb0rmx1M9Z_lO3BSx360JMSi7ITi2pG-pY1RYcWWYGTshPuhekXkTD0yaVXBwb45QRwvlIOH8vmyAeY2T3aKtp9kMxgvFpwO1ifL2Va8_3HCWxhpHu9scabp5NxbDQ-OaE1sN47P2xtNufJ_6EW-tWdDJL1KXO80uil4')"}}
           ></div>
         </div>
       </div>
