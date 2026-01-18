@@ -17,13 +17,14 @@ const LoginPage = () => {
   };
 
   return (
-    <div 
-      className="fixed inset-0 z-0 bg-cover bg-center scale-105"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${backgroundImageUrl}')`
-      }}
-    />
-    <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-6 py-12">
+    <>
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center scale-105"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${backgroundImageUrl}')`
+        }}
+      />
+      <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-6 py-12">
       {/* Login Card */}
       <div className="w-full max-w-[480px] bg-white/85 dark:bg-base-content/85 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-white/20 dark:border-white/10">
         
@@ -122,7 +123,8 @@ const LoginPage = () => {
           </p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
