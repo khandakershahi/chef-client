@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
+import { FaUtensils } from "react-icons/fa";
 import Container from "../Container";
 import Link from "next/link";
 const Navbar = () => {
@@ -62,8 +63,8 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-lg text-primary-content font-bold text-lg">
-              🍽
+            <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-lg text-primary-content">
+              <FaUtensils size={18} />
             </div>
             <span className="btn btn-ghost text-xl font-bold tracking-tight hidden sm:inline text-base-content">
               The Golden Apron
