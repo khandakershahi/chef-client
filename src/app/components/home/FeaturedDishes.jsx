@@ -1,6 +1,8 @@
 import React from 'react';
 import Container from '../Container';
 
+import Link from 'next/link';
+
 const FeaturedDishes = ({ dishes = [] }) => {
   // Default dishes if no data from DB
   const defaultDishes = [
@@ -47,22 +49,26 @@ const FeaturedDishes = ({ dishes = [] }) => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayDishes.map((dish, index) => (
-            <div
-              key={index}
-              className={`group cursor-pointer ${dish.offset ? 'lg:translate-y-8' : ''}`}
-            >
-              <div className="aspect-square rounded-xl overflow-hidden mb-4 relative">
-                <div className="absolute inset-0 bg-base-content/0 group-hover:bg-base-content/20 transition-all duration-300"></div>
-                <div
-                  className="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url('${dish.image}')` }}
-                ></div>
-              </div>
-              <h3 className="text-lg font-bold text-base-content">{dish.title}</h3>
-              <p className="text-base-content/60 text-sm">{dish.description}</p>
-            </div>
-          ))}
+          {displayDishes.map((dish, index) => {
+            const Wrapper = dish.href ? Link : 'div';
+            const wrapperProps = dish.href
+              ? { href: dish.href, className: `group block ${dish.offset ? 'lg:translate-y-8' : ''}` }
+              : { className: `group cursor-default ${dish.offset ? 'lg:translate-y-8' : ''}` };
+
+            return (
+              <Wrapper key={index} {...wrapperProps}>
+                <div className="aspect-square rounded-xl overflow-hidden mb-4 relative">
+                  <div className="absolute inset-0 bg-base-content/0 group-hover:bg-base-content/20 transition-all duration-300"></div>
+                  <div
+                    className="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url('${dish.image}')` }}
+                  ></div>
+                </div>
+                <h3 className="text-lg font-bold text-base-content">{dish.title}</h3>
+                <p className="text-base-content/60 text-sm">{dish.description}</p>
+              </Wrapper>
+            );
+          })}
         </div>
       </Container>
     </section>

@@ -7,22 +7,37 @@ import Testimonials from './components/home/Testimonials';
 import CTASection from './components/home/CTASection';
 import Navbar from './components/shared/Navbar';
 import Footer from './components/shared/Footer';
+import MenuGrid from './components/home/MenuGrid';
 
-export default function Home() {
-  // TODO: Fetch dishes from database
-  // const dishes = await getDishesFromDB();
-  const dishes = []; // Pass empty array to use default dishes
+async function fetchMenuItems() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  try {
+    const res = await fetch(`${apiUrl}/api/items`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to fetch menu items');
+    return await res.json();
+  } catch (err) {
+    console.error('Error fetching menu items for home:', err);
+    return [];
+  }
+}
 
-  // TODO: Fetch testimonials from database
-  // const testimonials = await getTestimonialsFromDB();
-  const testimonials = []; // Pass empty array to use default testimonials
+export default async function Home() {
+  const menuItems = await fetchMenuItems();
+  const featured = menuItems.slice(0, 4).map((item) => ({
+    title: item.name,
+    description: item.description,
+    image: item.image,
+    href: item._id ? `/dish/${item._id}` : undefined,
+  }));
+
+  const testimonials = []; // still using defaults
 
   return (
     <>
       <Navbar />
       <main className="pt-20">
         <HeroSection />
-        <FeaturedDishes dishes={dishes} />
+        <FeaturedDishes dishes={featured} />
         <CulinaryProcess />
         <QualitySection />
         <StorySection />

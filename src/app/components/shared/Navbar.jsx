@@ -17,6 +17,12 @@ const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
+  const avatarInitials = (user?.name || user?.email || "").trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((s) => s[0]?.toUpperCase())
+    .join("");
+
   const handleLogout = async () => {
     try {
       setIsLoggingOut(true);
@@ -141,14 +147,31 @@ const Navbar = () => {
             </svg>
           </label>
           {user ? (
-            <button
-              onClick={handleLogout}
-              disabled={isLoggingOut}
-              className="btn btn-sm bg-red-600 text-white hidden sm:inline-flex uppercase tracking-widest font-bold hover:bg-red-700 disabled:opacity-50 gap-2"
-            >
-              <FaSignOutAlt size={14} />
-              {isLoggingOut ? "Logging out..." : "Logout"}
-            </button>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 px-3 py-2 rounded-full border border-base-300 bg-base-100 hover:border-primary transition-colors"
+              >
+                <div
+                  className="w-8 h-8 rounded-full bg-primary text-primary-content flex items-center justify-center text-xs font-bold uppercase overflow-hidden"
+                  style={user?.image ? { backgroundImage: `url('${user.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+                >
+                  {!user?.image && avatarInitials}
+                </div>
+                <div className="hidden sm:flex flex-col leading-tight">
+                  <span className="text-xs font-semibold text-base-content">{user?.name || user?.email}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-base-content/60">Dashboard</span>
+                </div>
+              </Link>
+              <button
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="btn btn-sm bg-red-600 text-white hidden sm:inline-flex uppercase tracking-widest font-bold hover:bg-red-700 disabled:opacity-50 gap-2"
+              >
+                <FaSignOutAlt size={14} />
+                {isLoggingOut ? "Logging out..." : "Logout"}
+              </button>
+            </div>
           ) : (
             <Link href="/login" className="btn btn-sm bg-base-content text-base-100 hidden sm:inline-flex uppercase tracking-widest font-bold hover:opacity-90">
               Login

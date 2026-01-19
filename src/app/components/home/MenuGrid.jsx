@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Container from '../Container';
 
 const MenuGrid = ({ menuItems = [] }) => {
@@ -101,9 +102,12 @@ const MenuGrid = ({ menuItems = [] }) => {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {filteredItems.map(item => (
+          {filteredItems.map(item => {
+            const key = item._id || item.id;
+            const href = item._id ? `/dish/${item._id}` : '#';
+            return (
             <div
-              key={item.id}
+              key={key}
               className={`group relative flex flex-col bg-base-100 rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-base-200 ${
                 item.isLarge ? 'lg:col-span-2 lg:row-span-2' : ''
               }`}
@@ -143,19 +147,23 @@ const MenuGrid = ({ menuItems = [] }) => {
                         </span>
                       ))}
                     </div>
-                    <button className="flex items-center gap-2 group/btn text-sm font-bold uppercase tracking-widest text-primary hover:text-primary/80 transition-colors">
+                    <Link href={href} className="flex items-center gap-2 group/btn text-sm font-bold uppercase tracking-widest text-primary hover:text-primary/80 transition-colors">
                       <span>View Details</span>
                       <span>→</span>
-                    </button>
+                    </Link>
                   </div>
                 ) : (
-                  <button className="mt-auto w-full border border-primary/20 hover:bg-primary hover:text-white py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all">
+                  <Link
+                    href={href}
+                    className="mt-auto w-full text-center border border-primary/20 hover:bg-primary hover:text-white py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all"
+                  >
                     View Details
-                  </button>
+                  </Link>
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* CTA */}

@@ -1,20 +1,45 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useAuth } from '@/context/AuthContext';
 
 const LoginPage = () => {
   const backgroundImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDtu2bQRsfYLVNROFUBQBXRy_LTPH9jJNqw3Fb4dEGiBKlRfQvxaj5gDKXesqy2uFMOAutmGplxdX_xufgi_3w7JvYVGACBvBn0TJewLdkmWEYAsDSGQRWdehEdpNXpLy3RkwOUSGKQeEQKpDAY0JVOhu8UMAwxjUKLm8Pj2jLAD6aETX59FPrwSVlG6bM0ZNw_AFHJFHmb9dovDBjTIg055h5VOGfU489v6tQrYfnIuOBPJkzbCWpKNCkc-6IYy21BpwokmhY8V3k';
+
+  const router = useRouter();
+  const { user, signInWithCredentials, loading: authLoading } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const demoEmail = process.env.NEXT_PUBLIC_DEMO_EMAIL || 'chef@goldenapron.com';
+  const demoPassword = process.env.NEXT_PUBLIC_DEMO_PASSWORD || 'chef12345';
+
+  useEffect(() => {
+    if (user) {
+      router.replace('/dashboard');
+    }
+  }, [user, router]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login attempt:', { email, password, rememberMe });
-    // TODO: Implement actual login logic
+    setError('');
+    setLoading(true);
+
+    try {
+      await signInWithCredentials(email, password);
+      router.push('/dashboard');
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,7 +68,16 @@ const LoginPage = () => {
           <div className="flex flex-col gap-2 mb-6">
             <h1 className="text-gray-900 dark:text-white text-3xl font-black leading-tight">Staff Portal</h1>
             <p className="text-gray-600 dark:text-gray-300 text-base italic">Welcome back to the kitchen, Chef.</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Demo credentials: {demoEmail} / {demoPassword}
+            </p>
           </div>
+
+          {error && (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
 
           {/* Email Field */}
           <div className="flex flex-col gap-1.5">
@@ -55,6 +89,8 @@ const LoginPage = () => {
               placeholder="chef@goldenapron.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
               className="w-full h-14 px-4 rounded-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all"
             />
           </div>
@@ -70,6 +106,8 @@ const LoginPage = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+                autoComplete="current-password"
                 className="flex-1 h-14 px-4 rounded-l-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-r-0 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all"
               />
               <button
@@ -102,9 +140,10 @@ const LoginPage = () => {
           <div className="pt-4">
             <button
               type="submit"
+              disabled={loading || authLoading}
               className="w-full h-14 rounded-lg bg-secondary hover:bg-secondary/90 text-gray-900 font-black uppercase tracking-widest transition-colors shadow-md"
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </button>
           </div>
 
