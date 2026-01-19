@@ -1,13 +1,23 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
+import { FaEye, FaEyeSlash, FaImage } from 'react-icons/fa';
+import { useAuth } from '@/context/AuthContext';
 
 const RegisterPage = () => {
   const backgroundImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDtu2bQRsfYLVNROFUBQBXRy_LTPH9jJNqw3Fb4dEGiBKlRfQvxaj5gDKXesqy2uFMOAutmGplxdX_xufgi_3w7JvYVGACBvBn0TJewLdkmWEYAsDSGQRWdehEdpNXpLy3RkwOUSGKQeEQKpDAY0JVOhu8UMAwxjUKLm8Pj2jLAD6aETX59FPrwSVlG6bM0ZNw_AFHJFHmb9dovDBjTIg055h5VOGfU489v6tQrYfnIuOBPJkzbCWpKNCkc-6IYy21BpwokmhY8V3k';
 
+  const router = useRouter();
+  const { signUp, loading: authLoading } = useAuth();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [photoFile, setPhotoFile] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState('');
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -24,10 +34,57 @@ const RegisterPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handlePhotoChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setPhotoFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setPhotoPreview(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Register attempt:', formData);
-    // TODO: Implement actual registration logic
+    setError('');
+    setLoading(true);
+
+    try {
+      // Validation
+      if (!formData.fullName || !formData.email || !formData.password || !formData.confirmPassword) {
+        setError('Please fill in all fields');
+        setLoading(false);
+        return;
+      }
+
+      if (formData.password !== formData.confirmPassword) {
+        setError('Passwords do not match');
+        setLoading(false);
+        return;
+      }
+
+      if (formData.password.length < 6) {
+        setError('Password must be at least 6 characters');
+        setLoading(false);
+        return;
+      }
+
+      if (!formData.agreeTerms) {
+        setError('Please agree to the Terms of Service');
+        setLoading(false);
+        return;
+      }
+
+      // Sign up with image
+      await signUp(formData.email, formData.password, formData.fullName, photoFile);
+      router.push('/dashboard');
+    } catch (err) {
+      setError(err.message || 'Failed to create account');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,6 +115,65 @@ const RegisterPage = () => {
               <p className="text-gray-600 dark:text-gray-300 text-base">Join our culinary community, Chef.</p>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Profile Photo Upload */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-gray-900 dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
+                Profile Photo (Optional)
+              </label>
+              <div className="flex gap-4 items-start">
+                {photoPreview ? (
+                  <div className="relative">
+                    <img
+                      src={photoPreview}
+                      alt="Profile preview"
+                      className="w-20 h-20 rounded-lg object-cover border-2 border-primary"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPhotoFile(null);
+                        setPhotoPreview('');
+                      }}
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold hover:bg-red-600 transition-colors"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-20 h-20 rounded-lg bg-gray-200 dark:bg-base-600 flex items-center justify-center">
+                    <FaImage size={24} className="text-gray-400" />
+                  </div>
+                )}
+                <div className="flex-1">
+                  <label className="block">
+                    <span className="sr-only">Choose photo</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoChange}
+                      className="block w-full text-sm text-gray-500 dark:text-gray-400
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-lg file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-primary file:text-white
+                        hover:file:bg-primary/90
+                        cursor-pointer"
+                    />
+                  </label>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                    JPG, PNG up to 5MB
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Full Name Field */}
             <div className="flex flex-col gap-1.5">
               <label className="text-gray-900 dark:text-white text-sm font-bold uppercase tracking-wide pb-1">
@@ -69,7 +185,8 @@ const RegisterPage = () => {
                 placeholder="Your Full Name"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full h-14 px-4 rounded-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all"
+                disabled={loading}
+                className="w-full h-14 px-4 rounded-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all disabled:opacity-50"
               />
             </div>
 
@@ -84,7 +201,8 @@ const RegisterPage = () => {
                 placeholder="chef@goldenapron.com"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full h-14 px-4 rounded-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all"
+                disabled={loading}
+                className="w-full h-14 px-4 rounded-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all disabled:opacity-50"
               />
             </div>
 
@@ -100,12 +218,14 @@ const RegisterPage = () => {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleChange}
-                  className="flex-1 h-14 px-4 rounded-l-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-r-0 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all"
+                  disabled={loading}
+                  className="flex-1 h-14 px-4 rounded-l-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-r-0 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all disabled:opacity-50"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center"
+                  disabled={loading}
+                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center disabled:opacity-50"
                 >
                   {showPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
                 </button>
@@ -124,12 +244,14 @@ const RegisterPage = () => {
                   placeholder="••••••••"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="flex-1 h-14 px-4 rounded-l-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-r-0 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all"
+                  disabled={loading}
+                  className="flex-1 h-14 px-4 rounded-l-lg text-base-content bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-r-0 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-base-content/50 transition-all disabled:opacity-50"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center"
+                  disabled={loading}
+                  className="px-4 bg-white dark:bg-base-200 border border-base-300 dark:border-base-600 border-l-0 rounded-r-lg text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center disabled:opacity-50"
                 >
                   {showConfirmPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
                 </button>
@@ -144,10 +266,11 @@ const RegisterPage = () => {
                   name="agreeTerms"
                   checked={formData.agreeTerms}
                   onChange={handleChange}
-                  className="w-4 h-4 mt-1 rounded border-2 border-base-300 dark:border-base-600 accent-primary cursor-pointer"
+                  disabled={loading}
+                  className="w-4 h-4 mt-1 rounded border-2 border-base-300 dark:border-base-600 accent-primary cursor-pointer disabled:opacity-50"
                 />
                 <span className="text-gray-800 dark:text-white text-sm">
-                  I agree to the Terms of Service and Privacy Policy
+                  I agree to the <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link> and <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
                 </span>
               </label>
             </div>
@@ -156,9 +279,10 @@ const RegisterPage = () => {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full h-14 rounded-lg bg-secondary hover:bg-secondary/90 text-gray-900 font-black uppercase tracking-widest transition-colors shadow-md"
+                disabled={loading || authLoading}
+                className="w-full h-14 rounded-lg bg-secondary hover:bg-secondary/90 disabled:bg-gray-400 text-gray-900 font-black uppercase tracking-widest transition-colors shadow-md disabled:cursor-not-allowed"
               >
-                Create Account
+                {loading ? 'Creating Account...' : 'Create Account'}
               </button>
             </div>
 

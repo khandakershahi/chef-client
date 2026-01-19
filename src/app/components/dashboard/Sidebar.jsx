@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 import { 
   FaUtensils, 
   FaChartLine, 
@@ -16,10 +17,25 @@ import {
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const isActive = (path) => {
     return pathname.includes(path);
+  };
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await logout();
+      router.push('/');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   const navItems = [
@@ -111,9 +127,15 @@ const Sidebar = () => {
           </div>
 
           {/* Logout Button */}
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 transition-all">
+          <button
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <FaSignOutAlt size={18} />
-            <span className="text-sm font-medium">Logout</span>
+            <span className="text-sm font-medium">
+              {isLoggingOut ? 'Logging out...' : 'Logout'}
+            </span>
           </button>
         </div>
       </aside>

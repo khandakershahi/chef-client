@@ -1,15 +1,33 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { FaUtensils } from "react-icons/fa";
+import { FaUtensils, FaSignOutAlt } from "react-icons/fa";
 import Container from "../Container";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+
 const Navbar = () => {
+  const router = useRouter();
+  const { user, logout } = useAuth();
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Menu", href: "/menu" },
     { label: "Our Story", href: "/story" },
   ];
   const [isDark, setIsDark] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await logout();
+      router.push("/");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   useEffect(() => {
     try {
@@ -55,11 +73,23 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/login" className="btn btn-sm bg-base-content text-base-100 font-bold uppercase tracking-widest mt-2 hover:opacity-90">
-                  Login
-                </Link>
-              </li>
+              {user ? (
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    disabled={isLoggingOut}
+                    className="btn btn-sm bg-red-600 text-white font-bold uppercase tracking-widest mt-2 hover:bg-red-700 disabled:opacity-50"
+                  >
+                    {isLoggingOut ? "Logging out..." : "Logout"}
+                  </button>
+                </li>
+              ) : (
+                <li>
+                  <Link href="/login" className="btn btn-sm bg-base-content text-base-100 font-bold uppercase tracking-widest mt-2 hover:opacity-90">
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <Link href="/" className="flex items-center gap-3">
@@ -110,9 +140,20 @@ const Navbar = () => {
               <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
             </svg>
           </label>
-          <Link href="/login" className="btn btn-sm bg-base-content text-base-100 hidden sm:inline-flex uppercase tracking-widest font-bold hover:opacity-90">
-            Login
-          </Link>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="btn btn-sm bg-red-600 text-white hidden sm:inline-flex uppercase tracking-widest font-bold hover:bg-red-700 disabled:opacity-50 gap-2"
+            >
+              <FaSignOutAlt size={14} />
+              {isLoggingOut ? "Logging out..." : "Logout"}
+            </button>
+          ) : (
+            <Link href="/login" className="btn btn-sm bg-base-content text-base-100 hidden sm:inline-flex uppercase tracking-widest font-bold hover:opacity-90">
+              Login
+            </Link>
+          )}
         </div>
         </div>
       </Container>
